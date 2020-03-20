@@ -1,0 +1,102 @@
+// <div className='col-8 right-side'>
+// <a>{p.title}</a>
+// <a>{p.author}</a>
+// <ul>
+// <li>{p.kind}</li>
+// <li>{p.epoch}</li>
+// <li>{p.genre}</li>
+// </ul>
+// <a href={p.url} target="_blank">przejdź do strony z książką</a>
+// </div> 
+
+.elem{
+    height: 445px;
+    border: 2px solid grey; 
+    
+.cover{
+    height: 100%;
+    img{
+        width: 100%;
+        height: 100%;
+        
+    }
+}
+.right-side{
+    background: rgba(red, 0);
+    height: 100%; 
+    .title{
+    color: #382110;
+    text-decoration: none;
+    font-size: 2em;
+    font-weight: bolder;
+    background-color: rgba(white, 0.8);
+    display: block;
+}
+   .author{
+       font-weight: bold;
+       background-color: rgba(white, 0.8);
+       color: #333;
+       
+   }
+   .fragment{
+       margin-top: 2rem;
+       margin-bottom: 2rem;
+       font-size: 1.2rem;
+       line-height: 21px;
+       letter-spacing: 0.1rem;
+       font-family: "Merriweather",serif;
+       background-color: rgba(rgb(182, 138, 56), 0.4);
+       font-weight: bold;
+   }
+   .wolneLektury{
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: rgba(orange, 0.4);
+    width: 40%;
+    height: 10%;
+    padding: 2%;
+    display: inline-block;
+    color: black;
+    
+   }
+}}
+.pagination{
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    background: white;
+    margin: 0 auto;
+    .active{
+        font-size: 20px;
+      border: 1px solid rgb(202, 200, 200);
+      text-decoration: none;
+      padding: 10px 30px;
+      height: 40px;
+      width: 80px;
+      justify-content: center;
+      display: inline-block;
+      
+}}
+.visible{
+    display: none
+}
+
+.downL{
+      margin-top: 20%;
+      background: rgba(rgb(224, 93, 115), 0.6);
+      display: flex;
+      flex-wrap: wrap;
+    a{
+        text-decoration: none;
+        font-size: 1.1em;
+        border: 1px solid black;
+        color: black;
+        font-weight: bold;
+        padding-left: 30px;
+        &:hover{
+            background-color: #382110;}
+        
+    }
+}
+
+//usunąć paski

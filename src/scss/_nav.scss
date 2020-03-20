@@ -1,0 +1,29 @@
+
+
+header {
+    width: 100vw;
+    background-color: $first-color;
+    height: 10vh;
+    
+nav{
+   margin: 0 auto; 
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 80%;  
+     a{
+      text-decoration: none;
+      font-size: 25px;
+      color: $main-word;
+      } 
+    ul{
+     display: flex;
+     margin-right: 250px;
+       li{
+           list-style-type: none;
+           margin-right: 50px;
+           font-size: 20px;
+       }
+}}}
+
+    

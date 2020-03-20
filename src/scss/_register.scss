@@ -1,0 +1,26 @@
+.form{
+    width: 40vw;
+    height: 35vh;
+    background-color: #f2f2f2;
+    margin: 0 auto;
+    margin-top: 20vh;
+    padding-left: 12%;
+    padding-top: 3%;
+    font-size: 1.4rem;
+    input[type=text]{
+        display: block;
+        padding: 2%;
+            
+        margin-top: 2%;
+        justify-content: center;
+        
+    }
+    label{
+        display: block;
+    }
+    input[type=submit]{
+        margin-top: 7%;
+        display: block;
+        font-size: larger;
+    }
+}

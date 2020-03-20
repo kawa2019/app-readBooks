@@ -1,0 +1,23 @@
+main{
+    margin-top: 20px;
+    form{
+        border:1px solid black;
+         width: 80%; 
+         margin: 0 auto;   
+         input{
+             width: 80%;
+             height: 40px;
+             border: none;
+             padding: 3px 4px;
+            //  margin: 50px;
+         }
+         button{
+           width: 20%;
+           padding: 0;
+           height: 40px;
+           border: none;
+           border-radius: none;
+           background: $alt-main-word;
+          
+         }
+}}
