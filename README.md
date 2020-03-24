@@ -1,6 +1,11 @@
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+
+In src/newDB directory you must run JSON Server:
+ 
+ ### `json-server -p 4000 pobrane.json -m ../../node_modules/json-server-auth`
 
 In the project directory, you can run:
 
