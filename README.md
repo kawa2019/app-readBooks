@@ -1,6 +1,6 @@
 App-readBooks -It is website which serves to
 search books also gives possibility to read it
-.That uses JS:react with SCSS.Page will be evolve into adding books to user account and RWD funtion.
+.That uses JS:react with SCSS.Page will be evolve into adding books to user account and get RWD function.
 
 ##
 
