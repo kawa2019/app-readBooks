@@ -1,3 +1,6 @@
+App-readBooks -It is website which serves to
+search books also gives possibility to read it
+.That uses JS:react
 
 ##
 
@@ -5,11 +8,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In src/newDB directory you must run JSON Server:
- 
- ### `json-server -p 4000 pobrane.json -m ../../node_modules/json-server-auth`
-
 In the project directory, you can run:
+
+### `npm i`
+
+This installs node modules.You must use it in order to go next steps.
 
 ### `npm start`
 
@@ -18,6 +21,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+
+In src/newDB directory you must run JSON Server:
+ 
+ ### `json-server -p 4000 pobrane.json -m ../../node_modules/json-server-auth`
+
+The page will be contains data from JSON Server
 
 ### `npm test`
 
