@@ -1,4 +1,4 @@
-## Short describe
+## Short description
 
 App-readBooks -It is website which serves to
 search books also gives possibility to read it
