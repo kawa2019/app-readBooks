@@ -6,12 +6,12 @@ Page will be evolve into adding books to user account and get RWD function with 
 JSON Server.
 ##
 Main conntent of my my work is in src directory.There are directories like:
--scss which contains sass;
--components with a parts of app;
--newDB with my JSON server;
--pages/Home where are routes;
--fonts
--image
+### scss which contains sass;
+### components with a parts of app;
+### newDB with my JSON server;
+### pages/Home where are routes;
+### fonts
+### image
 
 ##
 
