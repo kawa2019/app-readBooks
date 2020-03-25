@@ -1,8 +1,20 @@
+## Short description
+
+App-readBooks -It is website which serves to
+search books also gives possibility to read it
+.That uses JS:react with SCSS.Page will be evolve into adding books to user account and get RWD function with good-looking CSS.
+
+##
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm i`
+
+This installs node modules.You must use it in order to go next steps.
 
 ### `npm start`
 
@@ -11,6 +23,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+
+Go to another terminal and in src/newDB directory you must run JSON Server:
+ 
+ ### `json-server -p 4000 pobrane.json -m ../../node_modules/json-server-auth`
+
+The page will be contains data from JSON Server
+
+Return to first terminal.
 
 ### `npm test`
 
