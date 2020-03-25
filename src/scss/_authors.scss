@@ -2,10 +2,17 @@
 .columns{
     display: flex;
     .authors{   
-    
+    margin: 0 auto;
     
     li{
-        width:25em;     
-        list-style-type: none;       
+        margin-top: 2em;
+        width:20em;     
+        list-style-type: none;
+        color: #004997;
+        border-top: 2px solid orange; 
+        background-color: rgba(white, 0.6);
+        line-height: 1.4em; 
+        font-weight: bold;     
     }
 }}
+

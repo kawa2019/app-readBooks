@@ -36,7 +36,7 @@ const Home = () => {
       return;
     }
 
-    fetch(`http://localhost:4000/books?q=${name}`)
+    fetch(`http://localhost:4000/books?q=${name.toLocaleLowerCase()}`)
     .then((res1)=>{return res1.json()})
     .then((thumb1)=>setBooks(thumb1))
     },[searching])
