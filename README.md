@@ -2,8 +2,12 @@
 
 App-readBooks -It is website which serves to
 search books also gives possibility to read it,you can search by any word relate to book.
-Page will be evolve into adding books to user account and get RWD function with good-looking CSS.Technologies:HTML,CSS,Sass,JavaScript,React, React-router/app,Bootstrap,NMP,ES6,Fetch,
-JSON Server.
+Page will be evolve into adding books to user account and get RWD function with good-looking CSS.
+My first applications use:
+- HTML,CSS,Sass
+- JavaScript,React, React-router/app
+- Bootstrap,NMP,ES6
+- Fetch,JSON Server.
 ##
 Main content of my my work is in src directory.There are directories like:<br />
  -scss which contains sass;<br />
