@@ -11,7 +11,8 @@
 
 .elem{
     height: 445px;
-    border: 2px solid grey; 
+    border: 2px solid grey;
+    background: url("../image/back.jpg");
     
 .cover{
     height: 100%;
@@ -22,7 +23,6 @@
     }
 }
 .right-side{
-    background: rgba(red, 0);
     height: 100%; 
     .title{
     color: #382110;
@@ -83,7 +83,7 @@
 
 .downL{
       margin-top: 20%;
-      background: rgba(rgb(224, 93, 115), 0.6);
+      background: rgba(orange, 0.4);
       display: flex;
       flex-wrap: wrap;
     a{

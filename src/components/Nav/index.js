@@ -18,7 +18,7 @@ const Nav = ()=>{
                   <li>Tytuł</li>
                   <li>Rodzaj</li>
                   <li>Gatunek</li>
-                  <li>Autor</li>
+                  <li><Link to="/authors">Autorzy</Link></li>
                 </ul>
              </nav>   
           </div>

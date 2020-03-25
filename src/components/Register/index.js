@@ -59,8 +59,8 @@ const Register = ()=>{
     return(
       
     <form className="form" onSubmit={(e)=>{return handleSubmit(user.password,e)}}>
-        <label>Imię</label>
-        <input type="text" placeholder="imię" name="email" value={user.email} onChange={handleChange}/>
+        <label>email</label>
+        <input type="text" placeholder="email" name="email" value={user.email} onChange={handleChange}/>
         <label>password</label>
         <input type="text" placeholder="password" name="password" value={user.password} onChange={handleChange}/>
         <input type="submit" value="zarejestruj się"/>

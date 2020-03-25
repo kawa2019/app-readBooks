@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 
 const Login =()=>{
 
-
+        
         const [isLoggedIn, setIsLoggedIn] = useState(false);
         const [email1, setEmail1] = useState('');
         const [password1, setPassword1] = useState('');
@@ -23,7 +23,7 @@ const Login =()=>{
                 setError('Password1 musi być dluższy niż 4 znaki');
                 return;
             }
-    
+            
             setError('');
             //wysylam zapytanie do servera
             
@@ -34,19 +34,20 @@ const Login =()=>{
               "Content-Type": "application/json"
             }}) 
             .then((user)=>user.json())
-            .then(user => {
+            .then(user => { 
                 // pod zmienną user mamy dostęp do informacji o zalogowanym użytkowniku
                 setIsLoggedIn(true);
                 setUser(user);
-                
-                
-                window.history.back();
+                console.log("mimo wszystko działa")
+                console.log(user)
+                 window.history.back();  
             }).catch(err => {
                 // pod zmienną err mamy dostęp do informacji o błędzie
                 setIsLoggedIn(false);
                 setError('dane nieprawidłowe');
+                console.log("Nie działa")
                 
-            })
+            }) 
             // fetch(`http://localhost:4000/users/`,{
             //       method:"POST",
             // headers: {
@@ -54,8 +55,8 @@ const Login =()=>{
                 
             // }}).then(res=>{return console.log(res.json()) ; }
             // )
-          
-        }
+            
+        }   
          
 
       return (
