@@ -5,9 +5,9 @@ search books also gives possibility to read it,you can search by any word relate
 Page will be evolve into adding books to user account and get RWD function with good-looking CSS.Technologies:HTML,CSS,Sass,JavaScript,React, React-router/app,Bootstrap,NMP,ES6,Fetch,
 JSON Server.
 ##
-Main conntent of my my work is in src directory.There are directories like:<br />
+Main content of my my work is in src directory.There are directories like:<br />
  -scss which contains sass;<br />
- -components with a parts of app;<br />
+ -components with parts of app;<br />
  -newDB with my JSON server;<br />
  -pages/Home where are routes;<br />
  -fonts;<br />
