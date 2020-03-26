@@ -26,11 +26,21 @@ const Home = () => {
   const [name,setName] = useState('');
   const [books,setBooks] = useState([])
   const [searching,setSearching] = useState(1)
-  const startToSearch= ()=>{return setSearching(prevState=>prevState+1)}
+  const [searching1,setSearching1] = useState(1)
+  const [author,setAuthor] =useState([]);
+  const [counter,setCounter] = useState(1);
+
+  const startToSearch= ()=>{if(name.length < 3){
+     setSearching1(prevState=>prevState+1);
+     setCounter(1)
+  }  else {return setSearching(prevState=>prevState+1)}}
   console.log(searching)
+  
+  
   useEffect(()=>{
+    
     if(name.length < 3){
-       return;
+      return;
     } 
     if (searching==1){
       return;
@@ -43,7 +53,7 @@ const Home = () => {
 
     
      
-    const [counter,setCounter] = useState(1);
+    
     const [pages,setPages]=useState([0,1,2,3,4,5,6]);
     const [changeNumber,setChNumber] = useState(0)
     const [deleteCNumber, setDCNumber] = useState(7)
@@ -67,7 +77,7 @@ const Home = () => {
     useEffect(()=>{fetch(`http://localhost:4000/books?_page=${counter}`)
     .then((res)=>{return res.json()})
     .then((thumb)=>setBooks(thumb))
-    },[counter]) ; 
+    },[searching1,counter]); 
       
       
          
@@ -75,6 +85,9 @@ const Home = () => {
        setCounter(number)
     }  
     
+    const authorFind=(author1)=>{
+      setName(author1)
+    }
     
     
     return (
@@ -87,7 +100,9 @@ const Home = () => {
               </Route>     
               <Route path='/register' component={Register} />
               <Route path='/login' component={Login} />
-              <Route path="/authors" component={Authors}/>
+              <Route path="/authors">
+                <Authors authorFind={authorFind} author={author} setAuthor={setAuthor}/>
+              </Route>           
             </Switch>
         </HashRouter>
     )
