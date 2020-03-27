@@ -7,7 +7,7 @@ const Main =({setter,value,startToSearch
         <section className="container">
           <div className="row menu col-12">
             <form onSubmit={startToSearch}>
-                <input  value={value} onChange={e=>setter(e.target.value)} type="text" placeholder="wpisz tytuł,autora,tytuł,rodzaj,gatunek"/>
+                <input  value={value} onChange={e=>setter(e.target.value.toLowerCase())} type="text" placeholder="wpisz tytuł,autora,tytuł,rodzaj,gatunek"/>
                 <input type="submit" className="button"/>
             </form>
           </div>       

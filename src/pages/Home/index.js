@@ -13,7 +13,7 @@ import {
     Route,
     Link,
     Switch,
-    NavLink,
+    NavLink,  
   } from 'react-router-dom';
 
 // <Switch>
@@ -29,6 +29,7 @@ const Home = () => {
   const [searching1,setSearching1] = useState(1)
   const [author,setAuthor] =useState([]);
   const [counter,setCounter] = useState(1);
+  
 
   const startToSearch= ()=>{if(name.length < 3){
      setSearching1(prevState=>prevState+1);
@@ -82,13 +83,16 @@ const Home = () => {
       
          
     const handleClick=(number)=>{
-       setCounter(number)
-    }  
+       setCounter(number);
+    }; 
     
-    const authorFind=(author1)=>{
-      setName(author1)
-    }
-    
+    const authorFind=(author1)=>{       
+      //window.history.back()
+      setName(author1);
+      setSearching(prevState=>prevState+1)
+     // if (name===author1){setSearching(3)}       
+    };
+    console.log(name+"TU JESTEM")
     
     return (
         <HashRouter>
@@ -100,10 +104,11 @@ const Home = () => {
               </Route>     
               <Route path='/register' component={Register} />
               <Route path='/login' component={Login} />
-              <Route path="/authors">
-                <Authors authorFind={authorFind} author={author} setAuthor={setAuthor}/>
-              </Route>           
-            </Switch>
+              <Route path="/authors"
+               // <Authors authorFind={authorFind} author={author} setAuthor={setAuthor}/>             
+              render={(props) => <Authors {...props} authorFind={authorFind} author={author} setAuthor={setAuthor} />}
+/>           
+            </Switch>   
         </HashRouter>
     )
 }
