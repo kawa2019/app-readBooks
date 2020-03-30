@@ -53,8 +53,8 @@
             {author.filter(b=> 
               b.charAt(0)=="N" || b.charAt(0)=="O" || b.charAt(0)=="P"
             || b.charAt(0)=="R" || b.charAt(0)=="S" || b.charAt(0)=="T"
-            || b.charAt(0)=="V" || b.charAt(0)=="W" || b.charAt(0)=="W").map((b,index)=><li key={index}><Link to="/" onClick={()=>authorFind(b)}>{b}</Link></li>)}
-            {author.slice(author.indexOf(author.find((e)=>e.charAt(0)=="W")),author.length).map((b,index)=>
+            || b.charAt(0)=="V" || b.charAt(0)=="W").map((b,index)=><li key={index}><Link to="/" onClick={()=>authorFind(b)}>{b}</Link></li>)}
+            {author.slice(author.indexOf(author.find((e)=>e.charAt(0)=="Z")),author.length).map((b,index)=>
               <li key={index}><Link to="/" onClick={()=>{authorFind(b)}}>{b}</Link></li>)}
           </ul>
           </>}

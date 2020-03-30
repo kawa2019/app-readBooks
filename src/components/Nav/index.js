@@ -15,9 +15,9 @@ const Nav = ()=>{
              <nav>
                 <a href="#">Zacznij czytac!</a>   
                 <ul>
-                  <li>Tytuł</li>
-                  <li>Rodzaj</li>
                   <li>Gatunek</li>
+                  <li>Rodzaj</li>
+                  <li><Link to="/title">Tytuł</Link></li>
                   <li><Link to="/authors">Autorzy</Link></li>
                 </ul>
              </nav>   

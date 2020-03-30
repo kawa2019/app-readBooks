@@ -1,11 +1,12 @@
 import React,{useState,useEffect} from 'react';
 //import Button from '../../components/Button/index';
-import Main from '../../components/Main/index'
-import All from "../../components/All-books/index"
-import Register from "../../components/Register/index"
-import Login from "../../components/Login/index"
-import Nav from '../../components/Nav/index'
-import Authors from "../../components/Authors/index"
+import Main from '../../components/Main/index';
+import All from "../../components/All-books/index";
+import Register from "../../components/Register/index";
+import Login from "../../components/Login/index";
+import Nav from '../../components/Nav/index';
+import Authors from "../../components/Authors/index";
+import Title from "../../components/Title/index"
 
 import ReactDOM from 'react-dom';
 import {
@@ -15,6 +16,7 @@ import {
     Switch,
     NavLink,  
   } from 'react-router-dom';
+
 
 // <Switch>
         //   <Route exact path='/main' component={Main} />
@@ -106,8 +108,10 @@ const Home = () => {
               <Route path='/login' component={Login} />
               <Route path="/authors"
                // <Authors authorFind={authorFind} author={author} setAuthor={setAuthor}/>             
-              render={(props) => <Authors {...props} authorFind={authorFind} author={author} setAuthor={setAuthor} />}
-/>           
+              render={(props) => <Authors {...props} authorFind={authorFind} author={author} setAuthor={setAuthor} />}/>           
+             <Route path="/title">
+               <Title authorFind={authorFind}/>  
+             </Route>
             </Switch>   
         </HashRouter>
     )

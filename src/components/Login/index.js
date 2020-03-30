@@ -1,4 +1,4 @@
-import React,{useState,} from "react";
+import React,{useState,useEffect} from "react";
 import {Link} from "react-router-dom"
 
 const Login =()=>{
@@ -9,9 +9,11 @@ const Login =()=>{
         const [password1, setPassword1] = useState('');
         const [error, setError] = useState('');
         const [user, setUser] = useState({});
-        console.log(user.accessToken)
+        const [loggedUser,setLoggedUser] = useState({})
+        console.log(loggedUser)
         
-        const handleSubmit = e => {
+        
+        const handleSubmit = (e) => {
             e.preventDefault();
             //validacja
             if (email1.length < 2) {
@@ -33,34 +35,44 @@ const Login =()=>{
             headers: {
               "Content-Type": "application/json"
             }}) 
-            .then((user)=>user.json())
-            .then(user => { 
+            .then((user1)=>user1.json())
+            .then(user1 => { 
                 // pod zmienną user mamy dostęp do informacji o zalogowanym użytkowniku
                 setIsLoggedIn(true);
-                setUser(user);
-                console.log("mimo wszystko działa")
-                console.log(user)
-                 window.history.back();  
+                setUser(user1);
+                console.log("POST TUTAJ")
+                
+                   
             }).catch(err => {
                 // pod zmienną err mamy dostęp do informacji o błędzie
                 setIsLoggedIn(false);
                 setError('dane nieprawidłowe');
                 console.log("Nie działa")
                 
-            }) 
-            // fetch(`http://localhost:4000/users/`,{
-            //       method:"POST",
-            // headers: {
-            //     "Authorization": `Bearer ${user.accessToken}`
-                
-            // }}).then(res=>{return console.log(res.json()) ; }
-            // )
+            }) ;
             
+           
+            
+            console.log(user.accessToken)
         }   
-         
 
+    
+     
+
+        useEffect(()=>{
+            fetch(`http://localhost:4000/600/users/${email1}`,{
+                method:"GET",
+          headers: {
+              "Authorization": `Bearer ${user.accessToken}`                
+          }}).then(res=>{return res.json()}
+          ).then(res=>{setLoggedUser(res)}) 
+          
+        },[user])
+       
+       
       return (
-            <form onSubmit={handleSubmit} >
+           <>
+            <form  className="form" onSubmit={handleSubmit} >
                 {error && <p>{error}</p>}
                 <label>email1</label>
                 <input
@@ -76,7 +88,9 @@ const Login =()=>{
                 />
                 <input type="submit" value="Wyslij" />
                 <Link to="/">wróć do strony głównej</Link>
-            </form>)
+            </form>
+            <h1>Twoja poczta{loggedUser.email}</h1>
+            </>)
 }
 
 
