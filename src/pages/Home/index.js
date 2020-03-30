@@ -31,7 +31,7 @@ const Home = () => {
   const [searching1,setSearching1] = useState(1)
   const [author,setAuthor] =useState([]);
   const [counter,setCounter] = useState(1);
-  
+  const [title,setTitle] = useState([])
 
   const startToSearch= ()=>{if(name.length < 3){
      setSearching1(prevState=>prevState+1);
@@ -110,7 +110,7 @@ const Home = () => {
                // <Authors authorFind={authorFind} author={author} setAuthor={setAuthor}/>             
               render={(props) => <Authors {...props} authorFind={authorFind} author={author} setAuthor={setAuthor} />}/>           
              <Route path="/title">
-               <Title authorFind={authorFind}/>  
+               <Title authorFind={authorFind} title={title} setTitle={setTitle}/>  
              </Route>
             </Switch>   
         </HashRouter>

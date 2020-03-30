@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
-const Title=({authorFind})=>{
-   const [title,setTitle] = useState([])
+const Title=({authorFind,title,setTitle})=>{
+   
    const [searchTitle,setSearchTitle] = useState("")
    const [duplicateSearchT,setDuplicateSearchT] = useState("")
    const [foundTitles,setFoundTitle] = useState([])
@@ -15,7 +15,7 @@ const Title=({authorFind})=>{
       .sort((a,b)=>a.replace(/[([\n,„« ]/,"").localeCompare(b.replace(/[/[([\n,„« ]/,"")));
       setTitle(filTitle) 
       })},[])
-      console.log(title)
+      
       const beginToSearchT=()=>{        
         let foundTitle = title.filter(x=>{
         if(searchTitle.length>=3)
@@ -23,13 +23,13 @@ const Title=({authorFind})=>{
           setFoundTitle(foundTitle)
           setDuplicateSearchT(searchTitle)      
     }
-   if (title.length<=0){
+   if (title.length<1){
      return "Loading ..."
    }
     return(
         <>
-        <form >
-                  <input onKeyDown={beginToSearchT} value={searchTitle} onChange={e=>{ return setSearchTitle(e.target.value)}} type="text" placeholder="podaj autora..."/>
+        <form onSubmit={beginToSearchT}>
+                  <input  value={searchTitle} onChange={e=>{ return setSearchTitle(e.target.value)}} type="text" placeholder="podaj autora..."/>
                   <input type="submit" className="button"/>
         </form>
         <div className="columns"> 
