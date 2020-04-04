@@ -1,40 +1,16 @@
   import React, { useEffect, useState } from 'react';
   import {Link} from "react-router-dom"
 
-  const Authors=({author,setAuthor,authorFind})=>{
+  const Authors=({author,setAuthor,authorFind,duplicateSearch,foundBooks})=>{
       
       
-      const [searchAuthor,setSearchAuthor] = useState("")
-      const [duplicateSearch,setDuplicateSearch] = useState("")
-      const [foundBooks,setFoundBooks] = useState([])
-
-      useEffect(()=>{fetch("http://localhost:4000/books")
-      .then(res=>res.json())
-      .then(res=>{ 
-      const filAuthors = res.map(b=>b.author).filter((item,index,arr)=>arr.indexOf(item)==index).sort();
-      setAuthor(filAuthors)   
-      })},[])
-
-      const beginToSearch=()=>{
-          let foundBook = author.filter(x=>{
-          if(searchAuthor.length>=3)
-            return  (x.toLowerCase().includes(searchAuthor))});
-            setFoundBooks(foundBook)
-            setDuplicateSearch(searchAuthor)
-            console.log(foundBooks)
-      }
+      
 
       console.log(author)
       if (author.length<1) {
           return "Loading...";
       }    
-      return (
-          <>
-          <form onSubmit={beginToSearch}>
-                  <input  value={searchAuthor} onChange={e=>{ return setSearchAuthor(e.target.value)}} type="text" placeholder="podaj autora..."/>
-                  <input type="submit" className="button"/>
-          </form>
-      
+      return (              
           <div className="columns"> 
       {duplicateSearch && <ul className="authors">{foundBooks.map((b,index)=><li key={index}><Link to="/" onClick={()=>authorFind(b)}>{b}</Link></li>)}</ul>}
           {!duplicateSearch &&
@@ -58,8 +34,7 @@
               <li key={index}><Link to="/" onClick={()=>{authorFind(b)}}>{b}</Link></li>)}
           </ul>
           </>}
-          </div>
-          </>       
+          </div>      
       )
   }
 

@@ -1,8 +1,7 @@
 import React from 'react';
-import "../../scss/main.scss";
 import {Link} from 'react-router-dom'
 
-const Nav = ()=>{
+const Nav = ({handleForm})=>{
 
     return (
        <>
@@ -12,13 +11,13 @@ const Nav = ()=>{
        <header> 
         <section className="container">
           <div className="row menu col-12"> 
-             <nav>
-                <a href="#">Zacznij czytac!</a>   
+             <nav>   
                 <ul>
+                  <li><Link to="/" onClick={()=>handleForm(1)}>Zacznij czytac!</Link></li>
                   <li>Gatunek</li>
                   <li>Rodzaj</li>
-                  <li><Link to="/title">Tytuł</Link></li>
-                  <li><Link to="/authors">Autorzy</Link></li>
+                  <li><Link to="/main/title"onClick={()=>handleForm(2)}>Tytuł</Link></li>
+                  <li><Link to="/main/authors" onClick={()=>handleForm(3)}>Autorzy</Link></li>
                 </ul>
              </nav>   
           </div>
