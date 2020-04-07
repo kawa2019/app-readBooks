@@ -5,7 +5,7 @@ Website will be evolving into add books to user account and get RWD function wit
 My first application use:
 - HTML,CSS,Sass
 - JavaScript,React, React-router/app
-- Bootstrap,NPM,ES6
+- NPM,ES6
 - Fetch,JSON Server.
 ##
 Main content of my my work is in src directory.There are directories like:<br />
