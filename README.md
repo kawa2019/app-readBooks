@@ -1,7 +1,7 @@
 ## Short description
 
 App-readBooks -It is an application used to search for books from the database and read them.You can search by any word relate to book.
-Website will be evolve into adding books to user account and get RWD function with good-looking CSS.<br/>
+Website will be evolving into add books to user account and get RWD function with good-looking CSS.<br/>
 My first application use:
 - HTML,CSS,Sass
 - JavaScript,React, React-router/app
