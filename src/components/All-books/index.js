@@ -48,7 +48,7 @@ import { LoremIpsum, Avatar } from 'react-lorem-ipsum';
  
 
  export default All;
-
+       
       //   <ul>
       //     {value.map((p,index)=>{ 
       //      return (<li key={index}>
