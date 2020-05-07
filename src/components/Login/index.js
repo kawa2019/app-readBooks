@@ -47,7 +47,7 @@ const Login =()=>{
                 // pod zmienną err mamy dostęp do informacji o błędzie
                 setIsLoggedIn(false);
                 setError('dane nieprawidłowe');
-                console.log("Nie działa")
+                console.log(err)
                 
             }) ;
             
