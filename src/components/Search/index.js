@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Main =({setter,value,startToSearch,numberForm,beginToSearch,beginToSearchT,searchAuthor,
+const Search =({setName,name,startToSearch,numberForm,beginToSearch,beginToSearchT,searchAuthor,
 searchTitle,setSearchAuthor,setSearchTitle})=>{
    const myturn =(numberForm)=>{ if(numberForm==1){
       return (
         <form onSubmit={startToSearch}>
-                <input  value={value} onChange={e=>setter(e.target.value.toLowerCase())} type="text" placeholder="wpisz tytuł,autora,tytuł,rodzaj,gatunek"/>
+                <input  value={name} onChange={e=>setName(e.target.value.toLowerCase())} type="text" placeholder="wpisz tytuł,autora,tytuł,rodzaj,gatunek"/>
                 <input type="submit" className="button"/>
         </form>
       )
@@ -32,14 +32,4 @@ searchTitle,setSearchAuthor,setSearchTitle})=>{
     )
 }
 
-export default Main;
-
-
-
-// const search_books=()=>{
-    //   let foundBooks = objBooks.filter(x=>{
-    //      if(name.length>=1)
-    //       return  (x.title.toLowerCase().includes(name))})
-    //       setFiltered(foundBooks)
-    //       console.log(foundBooks)}
-          
+export default Search;

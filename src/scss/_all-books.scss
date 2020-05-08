@@ -1,18 +1,7 @@
-// <div className='col-8 right-side'>
-// <a>{p.title}</a>
-// <a>{p.author}</a>
-// <ul>
-// <li>{p.kind}</li>
-// <li>{p.epoch}</li>
-// <li>{p.genre}</li>
-// </ul>
-// <a href={p.url} target="_blank">przejdź do strony z książką</a>
-// </div> 
-
 .elem{
     height: 445px;
     border: 2px solid grey;
-    background: url("../image/back.jpg");
+    background: url("../assets/image/back.jpg");
     
 .cover{
     height: 100%;

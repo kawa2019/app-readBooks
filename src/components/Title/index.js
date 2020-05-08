@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const Title=({authorFind,title,setTitle,foundTitles,duplicateSearchT})=>{
+const Title=({authorFind,title,foundTitles,duplicateSearchT})=>{
     
    if (title.length<1){
      return "Loading ..."

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import Button from '../../components/Button/index';
-import Main from '../../components/Main/index';
+import Search from '../../components/Search/index';
 import All from "../../components/All-books/index";
 import Register from "../../components/Register/index";
 import Login from "../../components/Login/index";
@@ -23,8 +22,8 @@ const Home = () => {
   const [author, setAuthor] = useState([]);
   const [counter, setCounter] = useState(1);
   const [title, setTitle] = useState([]);
+  const [numberForm, setNumberForm] = useState([1])
 
-  console.log(booksNumber)
   const startToSearch = () => {
     if (name.length < 3) {
       setSearching1(prevState => prevState + 1);
@@ -51,7 +50,7 @@ const Home = () => {
     if (searching == 1) {
       return;
     }
-    fetch(`http://localhost:4000/books?q=${name.toLocaleLowerCase()}${name.toLocaleLowerCase()}`)
+    fetch(`http://localhost:4000/books?q=${name.toLocaleLowerCase()}`)
       .then((res1) => { return res1.json() })
       .then((thumb1) => setBooks(thumb1))
   }, [searching])
@@ -62,8 +61,6 @@ const Home = () => {
   }, [searching1, counter]);
 
   //forms
-  const [numberForm, setNumberForm] = useState([1])
-
   const handleForm = (form) => {
     setNumberForm(form);
   }
@@ -109,35 +106,36 @@ const Home = () => {
 
   const authorFind = (author1) => {
     setName(author1);
-    setSearching(prevState => prevState + 1)
+    setSearching(prevState => prevState + 1);
+    setNumberForm(1);
   };
   return (
     <HashRouter>
-      <Nav handleForm={handleForm} />
+      <Nav handleForm={handleForm}/>
       <Switch>
         <Route exact path="/" >
-          <Main setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
+          <Search setName={setName} name={name} startToSearch={startToSearch} numberForm={numberForm}
             beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
             searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
           <All setCounter={setCounter} books={books} booksNumber={booksNumber}
             counter={counter} />
         </Route>
-        <Route exact path="/main">
-          <Main setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
+        {/* <Route exact path="/search">
+          <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
             beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
             searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
-        </Route>
+        </Route> */}
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
-        <Route path="/main/authors">
-          <Main setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
+        <Route path="/search/authors">
+          <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
             beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
             searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
           <Authors authorFind={authorFind} author={author} setAuthor={setAuthor}
             duplicateSearch={duplicateSearch} foundBooks={foundBooks} />
         </Route>
-        <Route path="/main/title">
-          <Main setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
+        <Route path="/search/title">
+          <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
             beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
             searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
           <Title authorFind={authorFind} title={title} setTitle={setTitle} foundTitles={foundTitles}

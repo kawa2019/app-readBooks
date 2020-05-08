@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 export default function ({ pageNumbers, setCounter, counter }) {
     const [currentPageNumber, setCurrentPageNumber] = useState(1);
-    const [minusPage2, setMinusPage2] = useState(1);
-    const [plusPage2, setPlusPage2] = useState(1);
     //index to slice
     const indexOfLastTodoPage = currentPageNumber * 6;
     const indexOfFirstTodoPage = indexOfLastTodoPage - 6;

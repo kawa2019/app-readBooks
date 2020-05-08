@@ -1,11 +1,11 @@
 $first-color:#5b605f;
-$main-word: #7d8a35;
+$main-word: #303030;
 $alt-main-word:#3cb46e;
 
 
 @font-face {
     font-family: 'Merriweather';
-    src: local('Merriweather'), url(../fonts/Merriweather-Black.otf) format('truetype');
+    src: local('Merriweather'), url(../assets/fonts/Merriweather-Black.otf) format('truetype');
   }
 $main-font: "Calibri","sans-serif";
 $basic-font-size: 15px;

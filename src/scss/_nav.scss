@@ -1,29 +1,66 @@
+section {
+  header {
+    height: 300px;
+    &:before {
+      content: "";
+      position: absolute;
+      background: url(../assets/image/Portret-Wladysława-Reymonta.jpg) no-repeat;
+      background-size: cover;
+      background-position: 0% 9%;
+      height: 300px;
+      width: 1200px;
+      min-width: 100%;
+      left: 0;
+      z-index: -1;
+    }
+    ul {
+      justify-content: flex-end;
+      li {
+        background-color: #fff;
+        a {
+          padding: 15px 20px;
+          font-size: 15px;
+          color: $main-word;
+        }
+      }
+    }
+  }
 
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:before {
+      content: "";
+      position: absolute;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      height: 50px;
+      width: 1200px;
+      min-width: 100%;
+      left: 0;
+      z-index: -1;
+    }
+  }
+  ul {
+    display: flex;
+    margin: 0 auto;
 
-header {
-    width: 100vw;
-    background-color: $first-color;
-    height: 10vh;
-    
-nav{
-   margin: 0 auto; 
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 80%;  
-     a{
-      text-decoration: none;
-      font-size: 25px;
-      color: $main-word;
-      } 
-    ul{
-     display: flex;
-     margin-right: 250px;
-       li{
-           list-style-type: none;
-           margin-right: 50px;
-           font-size: 20px;
-       }
-}}}
-
-    
+    li {
+      list-style-type: none;
+      a {
+        display: inline-block;
+        height: 50px;
+        text-decoration: none;
+        font-size: 25px;
+        color: $main-word;
+        text-transform: uppercase;
+        padding: 10px 40px;
+        transition: 0.3s ease-out;
+        &:hover {
+          background-color: #ddd;
+        }
+      }
+    }
+  }
+}
