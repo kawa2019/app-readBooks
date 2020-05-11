@@ -22,15 +22,16 @@ const Home = () => {
   const [author, setAuthor] = useState([]);
   const [counter, setCounter] = useState(1);
   const [title, setTitle] = useState([]);
-  const [numberForm, setNumberForm] = useState([1])
+  const [numberForm, setNumberForm] = useState(1);
+  const [helper, setHelper] = useState(1)
 
   const startToSearch = () => {
     if (name.length < 3) {
       setSearching1(prevState => prevState + 1);
-      setCounter(1)
+      setCounter(1);
+      setHelper(1)
     } else { return setSearching(prevState => prevState + 1) }
   }
-
   useEffect(() => {
     fetch("http://localhost:4000/books")
       .then(res => res.json())
@@ -40,8 +41,6 @@ const Home = () => {
         setTitle(filTitle); setBooksNumber(res.length)
       })
   }, [])
-  console.log()
-
   useEffect(() => {
 
     if (name.length < 3) {
@@ -51,7 +50,7 @@ const Home = () => {
       return;
     }
     fetch(`http://localhost:4000/books?q=${name.toLocaleLowerCase()}`)
-      .then((res1) => { return res1.json() })
+      .then((res1) => res1.json())
       .then((thumb1) => setBooks(thumb1))
   }, [searching])
   useEffect(() => {
@@ -72,14 +71,11 @@ const Home = () => {
   const beginToSearchT = () => {
     let foundTitle = title.filter(x => {
       if (searchTitle.length >= 3)
-        return (x.toLowerCase().includes(searchTitle))
+        return x.toLowerCase().includes(searchTitle.toLocaleLowerCase())
     });
     setFoundTitle(foundTitle)
     setDuplicateSearchT(searchTitle)
   }
-
-  //title
-
   //authors
   const [searchAuthor, setSearchAuthor] = useState("")
   const [duplicateSearch, setDuplicateSearch] = useState("")
@@ -97,11 +93,10 @@ const Home = () => {
   const beginToSearch = () => {
     let foundBook = author.filter(x => {
       if (searchAuthor.length >= 3)
-        return (x.toLowerCase().includes(searchAuthor))
+        return (x.toLowerCase().includes(searchAuthor.toLocaleLowerCase()))
     });
     setFoundBooks(foundBook)
     setDuplicateSearch(searchAuthor)
-    console.log(foundBooks)
   }
 
   const authorFind = (author1) => {
@@ -111,7 +106,7 @@ const Home = () => {
   };
   return (
     <HashRouter>
-      <Nav handleForm={handleForm}/>
+      <Nav handleForm={handleForm} helper={helper} setHelper={setHelper} />
       <Switch>
         <Route exact path="/" >
           <Search setName={setName} name={name} startToSearch={startToSearch} numberForm={numberForm}
@@ -120,11 +115,6 @@ const Home = () => {
           <All setCounter={setCounter} books={books} booksNumber={booksNumber}
             counter={counter} />
         </Route>
-        {/* <Route exact path="/search">
-          <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
-            beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
-            searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
-        </Route> */}
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
         <Route path="/search/authors">

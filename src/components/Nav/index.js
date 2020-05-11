@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 
-const Nav = ({ handleForm }) => {
-   const [helper, setHelper] = useState(1)
+const Nav = ({ handleForm, helper, setHelper }) => {
    const backgroundOneMenu = (param) => {
       let style = {}
-      if (helper == param) {
+      if (helper === param) {
          return style = {
             background: "#ddd"
          }
@@ -24,7 +23,7 @@ const Nav = ({ handleForm }) => {
                </header>
                <nav>
                   <ul>
-                     <li><Link to="/" onClick={() => { setHelper(1); return handleForm(1) }} style={backgroundOneMenu(1)}>Zacznij czytac!</Link></li>
+                     <li><Link to="/" onClick={() => { setHelper(1); return handleForm(1) }} style={backgroundOneMenu(1)}>Start</Link></li>
                      <li><Link to="/" onClick={() => { setHelper(2); return handleForm(1) }} style={backgroundOneMenu(2)} >Gatunek</Link></li>
                      <li><Link to="/" onClick={() => { setHelper(3); return handleForm(1) }} style={backgroundOneMenu(3)}>Rodzaj</Link></li>
                      <li><Link to="/search/title" onClick={() => { setHelper(4); return handleForm(2) }} style={backgroundOneMenu(4)}>Tytuł</Link></li>
@@ -36,5 +35,4 @@ const Nav = ({ handleForm }) => {
       </>
    )
 }
-
 export default Nav

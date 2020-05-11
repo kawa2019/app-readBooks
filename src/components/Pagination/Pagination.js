@@ -6,9 +6,9 @@ export default function ({ pageNumbers, setCounter, counter }) {
     const indexOfLastTodoPage = currentPageNumber * 6;
     const indexOfFirstTodoPage = indexOfLastTodoPage - 6;
     //border of page
-    const myBorderPage = (param1) => {
+    const myBorderPage = (param) => {
         let style = {}
-        if (counter == param1) {
+        if (counter === param) {
             return style = {
                 border: "0.075rem solid #3c3c3c"
             }
@@ -22,7 +22,7 @@ export default function ({ pageNumbers, setCounter, counter }) {
                 key={number}
                 id={number}
                 style={myBorderPage(number)}
-                onClick={e => setCounter(e.target.id)}
+                onClick={e => setCounter(+e.target.id)}
             >
                 {number}
             </span>

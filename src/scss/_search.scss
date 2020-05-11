@@ -1,28 +1,24 @@
-main{
-    margin-top: 20px;}
-    form{
-      
-        border:1px solid black;
-        border-bottom: none;
-         width: 80%; 
-         margin: 0 auto;   
-         
-         input{
-          outline: none;
-             width: 80%;
-             height: 40px;  
-             border: none;
-             padding: 3px 4px;
-            //  margin: 50px;
-         }
-         .button{
-           width: 20%;
-          // padding: 0;
-           height: 40px;
-           border: none;
-           border-radius: none;
-           background: $alt-main-word;
-           outline: none;
-           color: #fff;
-         }
+main {
+  margin-top: 20px;
+}
+form {
+  border: 1px solid black;
+  margin: 0 auto;
+  input {
+    outline: none;
+    width: 80%;
+    height: 40px;
+    border: none;
+    padding: 3px 4px;
+  }
+  .button {
+    width: 20%;
+    height: 40px;
+    border: none;
+    border-radius: none;
+    background: $alt-main-word;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+  }
 }
