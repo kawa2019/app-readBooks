@@ -5,7 +5,8 @@ import Register from "../../components/Register/index";
 import Login from "../../components/Login/index";
 import Nav from '../../components/Nav/index';
 import Authors from "../../components/Authors/index";
-import Title from "../../components/Title/index"
+import Title from "../../components/Title/index";
+import Alpha_listing from '../../components/Alpha_listing/index'
 import {
   HashRouter,
   Route,
@@ -22,14 +23,15 @@ const Home = () => {
   const [author, setAuthor] = useState([]);
   const [counter, setCounter] = useState(1);
   const [title, setTitle] = useState([]);
-  const [numberForm, setNumberForm] = useState(1);
+  const [numberForm, setNumberForm] = useState("http://localhost:3000/?#/");
   const [helper, setHelper] = useState(1)
 
   const startToSearch = () => {
     if (name.length < 3) {
       setSearching1(prevState => prevState + 1);
       setCounter(1);
-      setHelper(1)
+      setHelper(1);
+      alert("minimum 3 znaki")
     } else { return setSearching(prevState => prevState + 1) }
   }
   useEffect(() => {
@@ -61,6 +63,13 @@ const Home = () => {
 
   //forms
   const handleForm = (form) => {
+    if (form === 1) {
+      setName("");
+      setSearching1(prevState => prevState + 1);
+      setCounter(1);
+      setHelper(1);
+
+    }
     setNumberForm(form);
   }
   //title 
@@ -69,12 +78,17 @@ const Home = () => {
   const [foundTitles, setFoundTitle] = useState([])
 
   const beginToSearchT = () => {
-    let foundTitle = title.filter(x => {
-      if (searchTitle.length >= 3)
-        return x.toLowerCase().includes(searchTitle.toLocaleLowerCase())
-    });
-    setFoundTitle(foundTitle)
-    setDuplicateSearchT(searchTitle)
+    if (searchTitle.length >= 3) {
+      let foundTitle = title.filter(x => {
+        if (searchTitle.length >= 3)
+          return x.toLowerCase().includes(searchTitle.toLocaleLowerCase())
+      });
+      setFoundTitle(foundTitle)
+      setDuplicateSearchT(searchTitle)
+    } else {
+      alert("minimum 3 znaki");
+      setDuplicateSearchT("")
+    }
   }
   //authors
   const [searchAuthor, setSearchAuthor] = useState("")
@@ -91,15 +105,21 @@ const Home = () => {
   }, [])
 
   const beginToSearch = () => {
-    let foundBook = author.filter(x => {
-      if (searchAuthor.length >= 3)
-        return (x.toLowerCase().includes(searchAuthor.toLocaleLowerCase()))
-    });
-    setFoundBooks(foundBook)
-    setDuplicateSearch(searchAuthor)
+    if (searchAuthor.length >= 3) {
+      let foundBook = author.filter(x => {
+        if (searchAuthor.length >= 3)
+          return (x.toLowerCase().includes(searchAuthor.toLocaleLowerCase()))
+      });
+      setFoundBooks(foundBook)
+      setDuplicateSearch(searchAuthor)
+    } else {
+      alert("minimum 3 znaki");
+      setDuplicateSearch("")
+    }
   }
 
   const authorFind = (author1) => {
+    window.location.href = "http://localhost:3000/?#/"
     setName(author1);
     setSearching(prevState => prevState + 1);
     setNumberForm(1);
@@ -128,6 +148,7 @@ const Home = () => {
           <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
             beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
             searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
+          <Alpha_listing/>
           <Title authorFind={authorFind} title={title} setTitle={setTitle} foundTitles={foundTitles}
             duplicateSearchT={duplicateSearchT} />
         </Route>

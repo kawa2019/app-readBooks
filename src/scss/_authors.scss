@@ -1,22 +1,19 @@
-
-.columns{
+.columns {
     display: flex;
-    .authors{   
-    margin: 0 auto;
-    
-    li{
-        margin-top: 2em;
-        width:20em;     
-        list-style-type: none;
-        border-top: 2px solid orange; 
-        background-color: rgba(white, 0.6);
-        line-height: 1.4em; 
-        font-weight: bold; 
-        a{
+    .authors {
+        margin: 0 auto;
+
+        li {
+            margin-top: 2em;
+            width: 20em;
+            list-style-type: none;
+            border-top: 2px solid orange;
+            background-color: rgba(white, 0.6);
+            line-height: 1.4em;
+            font-weight: bold;
             color: #004997;
             text-decoration: none;
             cursor: pointer;
         }
     }
-}}
-
+}

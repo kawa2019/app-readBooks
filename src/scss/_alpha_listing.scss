@@ -1,0 +1,22 @@
+.alpha_listing {
+    font-size: 108%;
+    margin: 7px 5px 0;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    li {
+        display: inline-block;
+        a {
+            border-radius: 6px 6px 6px 6px;
+            background-color: #1f6a8c;
+            color: #fff;
+            display: block;
+            font-size: 116%;
+            text-decoration: none;
+            padding: 0 7px;
+            cursor: pointer;
+        }
+    }
+}
