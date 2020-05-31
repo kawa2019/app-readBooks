@@ -24,7 +24,24 @@ const Home = () => {
   const [counter, setCounter] = useState(1);
   const [title, setTitle] = useState([]);
   const [numberForm, setNumberForm] = useState("http://localhost:3000/?#/");
-  const [helper, setHelper] = useState(1)
+  const [helper, setHelper] = useState(1);
+  const [email1, setEmail1] = useState('');
+  const [password1, setPassword1] = useState('');
+  const [userReg, setUserReg] = useState({ email: "", password: "" });
+
+
+  //basic url
+  const url = { http: "http://localhost:4000/", part2: "books" }
+
+  //authors
+  const [searchAuthor, setSearchAuthor] = useState("")
+  const [duplicateSearch, setDuplicateSearch] = useState("")
+  const [foundBooks, setFoundBooks] = useState([])
+
+  //title 
+  const [searchTitle, setSearchTitle] = useState("")
+  const [duplicateSearchT, setDuplicateSearchT] = useState("")
+  const [foundTitles, setFoundTitle] = useState([])
 
   const startToSearch = () => {
     if (name.length < 3) {
@@ -34,32 +51,51 @@ const Home = () => {
       alert("minimum 3 znaki")
     } else { return setSearching(prevState => prevState + 1) }
   }
+
   useEffect(() => {
-    fetch("http://localhost:4000/books")
+    fetch(url.http + url.part2)
       .then(res => res.json())
       .then(res => {
         const filTitle = res.map(b => b.title).filter((item, index, arr) => arr.indexOf(item) == index)
           .sort((a, b) => a.replace(/[([\n,„« ]/, "").localeCompare(b.replace(/[/[([\n,„« ]/, "")));
         setTitle(filTitle); setBooksNumber(res.length)
+        const filAuthors = res.map(b => b.author).filter((item, index, arr) => arr.indexOf(item) == index).sort();
+        setAuthor(filAuthors)
       })
   }, [])
-  useEffect(() => {
+  //fetch specific books
+  const booksByPage = `?_page=${counter}`
+  const booksBySearch = `?q=${name.toLocaleLowerCase()}`
+  const fetchSetBook = (booksWay) => {
+    fetch(`${url.http + url.part2}${booksWay}`)
+      .then((res) => { return res.json() })
+      .then((thumb) => setBooks(thumb))
+  }
 
+  useEffect(() => {
     if (name.length < 3) {
       return;
     }
     if (searching == 1) {
       return;
     }
-    fetch(`http://localhost:4000/books?q=${name.toLocaleLowerCase()}`)
-      .then((res1) => res1.json())
-      .then((thumb1) => setBooks(thumb1))
+    fetchSetBook(booksBySearch)
   }, [searching])
   useEffect(() => {
-    fetch(`http://localhost:4000/books?_page=${counter}`)
-      .then((res) => { return res.json() })
-      .then((thumb) => setBooks(thumb))
+    fetchSetBook(booksByPage)
   }, [searching1, counter]);
+
+  //option to register/login
+  const dataToLog = { email: email1, password: password1 };
+  const optionsToLogReg = (oneOfdata) => {
+    return ({
+      method: "POST",
+      body: JSON.stringify(oneOfdata),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+  };
 
   //forms
   const handleForm = (form) => {
@@ -72,10 +108,6 @@ const Home = () => {
     }
     setNumberForm(form);
   }
-  //title 
-  const [searchTitle, setSearchTitle] = useState("")
-  const [duplicateSearchT, setDuplicateSearchT] = useState("")
-  const [foundTitles, setFoundTitle] = useState([])
 
   const beginToSearchT = () => {
     if (searchTitle.length >= 3) {
@@ -90,20 +122,6 @@ const Home = () => {
       setDuplicateSearchT("")
     }
   }
-  //authors
-  const [searchAuthor, setSearchAuthor] = useState("")
-  const [duplicateSearch, setDuplicateSearch] = useState("")
-  const [foundBooks, setFoundBooks] = useState([])
-
-  useEffect(() => {
-    fetch("http://localhost:4000/books")
-      .then(res => res.json())
-      .then(res => {
-        const filAuthors = res.map(b => b.author).filter((item, index, arr) => arr.indexOf(item) == index).sort();
-        setAuthor(filAuthors)
-      })
-  }, [])
-
   const beginToSearch = () => {
     if (searchAuthor.length >= 3) {
       let foundBook = author.filter(x => {
@@ -135,8 +153,15 @@ const Home = () => {
           <All setCounter={setCounter} books={books} booksNumber={booksNumber}
             counter={counter} />
         </Route>
-        <Route path='/register' component={Register} />
-        <Route path='/login' component={Login} />
+        <Route path='/register'>
+          <Register url={url} userReg={userReg} setUserReg={setUserReg}
+          optionsToLogReg={optionsToLogReg}/>
+        </Route>/>
+        <Route path='/login'>
+          <Login url={url} email1={email1} setEmail1={setEmail1} password1={password1}
+          setPassword1={setPassword1} optionsToLogReg={optionsToLogReg}
+         dataToLog={dataToLog}/> 
+        </Route>
         <Route path="/search/authors">
           <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
             beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
@@ -148,7 +173,7 @@ const Home = () => {
           <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
             beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
             searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
-          <Alpha_listing/>
+          <Alpha_listing />
           <Title authorFind={authorFind} title={title} setTitle={setTitle} foundTitles={foundTitles}
             duplicateSearchT={duplicateSearchT} />
         </Route>

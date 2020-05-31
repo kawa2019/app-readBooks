@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 
-const Login = () => {
+const Login = ({ url, email1, setEmail1, password1, setPassword1, optionsToLogReg,
+    dataToLog }) => {
 
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [email1, setEmail1] = useState('');
-    const [password1, setPassword1] = useState('');
     const [error, setError] = useState('');
-    const [user, setUser] = useState({});
-    const [loggedUser, setLoggedUser] = useState({})
-    console.log(loggedUser)
-
+    const [loggedUser, setLoggedUser] = useState({});
+    const [userToLog, setUserToLog] = useState({});
+    const optionsToGetLogId = {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${userToLog.accessToken}`
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,56 +23,31 @@ const Login = () => {
             setError('Login musi być dluższy niż 1 znak');
             return;
         }
-
         if (password1.length < 5) {
             setError('Password1 musi być dluższy niż 4 znaki');
             return;
         }
-
         setError('');
-        //wysylam zapytanie do servera
 
-        fetch(`http://localhost:4000/signin`, {
-            method: "POST",
-            body: JSON.stringify({ email: email1, password: password1 }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then((user1) => user1.json())
-            .then(user1 => {
-                // pod zmienną user mamy dostęp do informacji o zalogowanym użytkowniku
+        fetch(`${url.http}signin`, optionsToLogReg(dataToLog)
+        )
+            .then((userToLog1) => userToLog1.json())
+            .then(userToLog1 => {
                 setIsLoggedIn(true);
-                setUser(user1);
-                console.log("POST TUTAJ")
-
-
-            }).catch(err => {
-                // pod zmienną err mamy dostęp do informacji o błędzie
+                setUserToLog(userToLog1)
+            })
+            .catch(err => {
                 setIsLoggedIn(false);
                 setError('dane nieprawidłowe');
                 console.log(err)
-
             });
-
-
-
-        console.log(user.accessToken)
     }
 
-
-
-
     useEffect(() => {
-        fetch(`http://localhost:4000/600/users/${email1}`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${user.accessToken}`
-            }
-        }).then(res => { return res.json() }
-        ).then(res => { setLoggedUser(res) })
-
-    }, [user])
+        fetch(`${url.http}600/users/${email1}`, optionsToGetLogId
+        ).then(res => res.json()
+        ).then(res => setLoggedUser(res))
+    }, [userToLog])
 
 
     return (
@@ -95,6 +73,4 @@ const Login = () => {
         </div>
     )
 }
-
-
 export default Login;   

@@ -5,98 +5,99 @@ const Title = ({ authorFind, title, foundTitles, duplicateSearchT }) => {
   const handleList = () => {
     const lists = document.querySelectorAll('.authors');
     if (lists.length >= 3) {
-      let txtValue = [];
+      //let txtValue1;
       for (let i = 0; i < lists.length; i++) {
         const oneListLenght = lists[i].querySelectorAll('li').length
-        console.log(oneListLenght)
         for (let j = 0; j < oneListLenght; j++) {
           const li = lists[i].getElementsByTagName('li')[j];
-          let txtValue1 = li.textContent || li.innerText
+           const txtValue1 = li.textContent || li.innerText
           switch (txtValue1.toUpperCase().replace("(", "").charAt(0)) {
             case "A":
-              li.classList.add("A");
+              li.setAttribute("id", "A");
               break;
             case "B":
-              li.classList.add("B");
+              li.setAttribute("id", "B");
               break;
             case "C":
-              li.classList.add("C");
+              li.setAttribute("id", "C");
               break;
             case "D":
-              li.classList.add("D");
+              li.setAttribute("id", "D");
               break;
             case "E":
-              li.classList.add("E");
+              li.setAttribute("id", "E");
               break;
             case "F":
-              li.classList.add("F");
+              li.setAttribute("id", "F");
               break;
             case "G":
-              li.classList.add("G");
+              li.setAttribute("id", "G");
               break;
             case "H":
-              li.classList.add("H");
+              li.setAttribute("id", "H");
               break;
             case "I":
-              li.classList.add("I");
+              li.setAttribute("id", "I");
               break;
             case "J":
-              li.classList.add("J");
+              li.setAttribute("id", "J");
               break;
             case "K":
-              li.classList.add("K");
+              li.setAttribute("id", "K");
               break;
             case "L":
-              li.classList.add("L");
+              li.setAttribute("id", "L");
               break;
             case "M":
-              li.classList.add("M");
+              li.setAttribute("id", "M");
               break;
             case "N":
-              li.classList.add("N");
+              li.setAttribute("id", "N");
               break;
             case "O":
-              li.classList.add("O");
+              li.setAttribute("id", "O");
               break;
             case "P":
-              li.classList.add("P");
+              li.setAttribute("id", "P");
               break;
             case "R":
-              li.classList.add("R");
+              li.setAttribute("id", "R");
               break;
             case "S":
-              li.classList.add("S");
+              li.setAttribute("id", "S");
               break;
             case "Ś":
-              li.classList.add("Ś");
+              li.setAttribute("id", "Ś");
               break;
             case "T":
-              li.classList.add("T");
+              li.setAttribute("id", "T");
               break;
             case "U":
-              li.classList.add("U");
+              li.setAttribute("id", "U");
               break;
             case "V":
-              li.classList.add("V");
+              li.setAttribute("id", "V");
               break;
             case "W":
-              li.classList.add("W");
+              li.setAttribute("id", "W");
               break;
             case "Z":
-              li.classList.add("Inne");
+              li.setAttribute("id", "Inne");
               break
-          }
+          }       
         }
       }
-      return txtValue
+
     }
+    
   }
+  console.log(1)
   console.log(handleList())
   if (title.length < 1) {
     return "Loading ..."
   }
   return (
-    <>
+    <>  
       <div className="container columns">
         {duplicateSearchT && <ul className="authors">{foundTitles.map((t, index) => <li key={index} onClick={() => authorFind(t)}>{t}</li>)}</ul>}
         {!duplicateSearchT &&
@@ -121,7 +122,8 @@ const Title = ({ authorFind, title, foundTitles, duplicateSearchT }) => {
               {title.slice(title.indexOf(title.find((e) => e.toUpperCase().replace("(", "").charAt(0) === "Z")), title.length).map((t, index) =>
                 <li key={index} onClick={() => { authorFind(t) }}>{t}</li>)}
             </ul>
-          </>}
+                      
+          </>} 
       </div>
     </>
   )
