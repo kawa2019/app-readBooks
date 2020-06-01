@@ -50,24 +50,22 @@ const Home = () => {
     } else { return setSearching(prevState => prevState + 1) }
   }
 
-  useEffect(() => {
-    fetch(url.http + url.part2)
-      .then(res => res.json())
-      .then(res => {
-        const filTitle = res.map(b => b.title).filter((item, index, arr) => arr.indexOf(item) == index)
-          .sort((a, b) => a.replace(/[([\n,„« ]/, "").localeCompare(b.replace(/[/[([\n,„« ]/, "")));
-        setTitle(filTitle); setBooksNumber(res.length)
-        const filAuthors = res.map(b => b.author).filter((item, index, arr) => arr.indexOf(item) == index).sort();
-        setAuthor(filAuthors)
-      })
+  useEffect(async () => {
+    const response = await fetch(url.http + url.part2)
+    const data = await response.json()
+    const filTitle = await data.map(b => b.title).filter((item, index, arr) => arr.indexOf(item) == index)
+      .sort((a, b) => a.replace(/[([\n,„« ]/, "").localeCompare(b.replace(/[/[([\n,„« ]/, "")));
+    setTitle(filTitle); setBooksNumber(data.length)
+    const filAuthors = await data.map(b => b.author).filter((item, index, arr) => arr.indexOf(item) == index).sort();
+    setAuthor(filAuthors)
   }, [])
   //fetch specific books
   const booksByPage = `?_page=${counter}`
   const booksBySearch = `?q=${name.toLocaleLowerCase()}`
-  const fetchSetBook = (booksWay) => {
-    fetch(`${url.http + url.part2}${booksWay}`)
-      .then((res) => { return res.json() })
-      .then((thumb) => setBooks(thumb))
+  const fetchSetBook = async (booksWay) => {
+    const response = await fetch(`${url.http + url.part2}${booksWay}`)
+    const data = await response.json()
+    setBooks(data)
   }
 
   useEffect(() => {
@@ -152,10 +150,10 @@ const Home = () => {
         </Route>
         <Route path='/register'>
           <Register url={url} userReg={userReg} setUserReg={setUserReg}
-          optionsToLogReg={optionsToLogReg}/>
+            optionsToLogReg={optionsToLogReg} />
         </Route>/>
         <Route path='/login'>
-          <Login url={url} optionsToLogReg={optionsToLogReg}/> 
+          <Login url={url} optionsToLogReg={optionsToLogReg} />
         </Route>
         <Route path="/search/authors">
           <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}

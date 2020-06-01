@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 
-const Login = ({ url,optionsToLogReg }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+const Login = ({ url, optionsToLogReg }) => {
     const [error, setError] = useState('');
     const [loggedUser, setLoggedUser] = useState({});
     const [userToLog, setUserToLog] = useState({});
@@ -28,24 +27,25 @@ const Login = ({ url,optionsToLogReg }) => {
             return;
         }
         setError('');
-        fetch(`${url.http}signin`, optionsToLogReg(dataToLog)
-        )
-            .then((userToLog1) => userToLog1.json())
-            .then(userToLog1 => {
-                setIsLoggedIn(true);
-                setUserToLog(userToLog1)
-            })
-            .catch(err => {
-                setIsLoggedIn(false);
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`${url.http}signin`, optionsToLogReg(dataToLog))
+                const data = await response.json()
+                setUserToLog(data)
+            } catch (err) {
                 setError('dane nieprawidłowe');
-                console.log(err)
-            });
+                alert(err)
+            }
+        };
+        fetchData()
     }
 
     useEffect(() => {
-        fetch(`${url.http}600/users/${email1}`, optionsToGetLogId
-        ).then(res => res.json()
-        ).then(res => setLoggedUser(res))
+        const fetchData = async () => {
+            const response = await fetch(`${url.http}600/users/${email1}`, optionsToGetLogId);
+            const data = await response.json();
+            setLoggedUser(data)
+        }; fetchData()
     }, [userToLog])
 
 
