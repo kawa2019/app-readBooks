@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 
-const Login = ({ url, email1, setEmail1, password1, setPassword1, optionsToLogReg,
-    dataToLog }) => {
-
-
+const Login = ({ url,optionsToLogReg }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [error, setError] = useState('');
     const [loggedUser, setLoggedUser] = useState({});
     const [userToLog, setUserToLog] = useState({});
+    const [email1, setEmail1] = useState('');
+    const [password1, setPassword1] = useState('');
+    const dataToLog = { email: email1, password: password1 };
     const optionsToGetLogId = {
         method: "GET",
         headers: {
@@ -28,7 +28,6 @@ const Login = ({ url, email1, setEmail1, password1, setPassword1, optionsToLogRe
             return;
         }
         setError('');
-
         fetch(`${url.http}signin`, optionsToLogReg(dataToLog)
         )
             .then((userToLog1) => userToLog1.json())

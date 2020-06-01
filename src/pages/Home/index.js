@@ -25,8 +25,6 @@ const Home = () => {
   const [title, setTitle] = useState([]);
   const [numberForm, setNumberForm] = useState("http://localhost:3000/?#/");
   const [helper, setHelper] = useState(1);
-  const [email1, setEmail1] = useState('');
-  const [password1, setPassword1] = useState('');
   const [userReg, setUserReg] = useState({ email: "", password: "" });
 
 
@@ -86,7 +84,6 @@ const Home = () => {
   }, [searching1, counter]);
 
   //option to register/login
-  const dataToLog = { email: email1, password: password1 };
   const optionsToLogReg = (oneOfdata) => {
     return ({
       method: "POST",
@@ -158,9 +155,7 @@ const Home = () => {
           optionsToLogReg={optionsToLogReg}/>
         </Route>/>
         <Route path='/login'>
-          <Login url={url} email1={email1} setEmail1={setEmail1} password1={password1}
-          setPassword1={setPassword1} optionsToLogReg={optionsToLogReg}
-         dataToLog={dataToLog}/> 
+          <Login url={url} optionsToLogReg={optionsToLogReg}/> 
         </Route>
         <Route path="/search/authors">
           <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
