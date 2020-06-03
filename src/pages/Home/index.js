@@ -27,9 +27,11 @@ const Home = () => {
   const [helper, setHelper] = useState(1);
   const [userReg, setUserReg] = useState({ email: "", password: "" });
 
-
   //basic url
   const url = { http: "http://localhost:4000/", part2: "books" }
+
+const da ={kamil1:1,kamil2:2}
+//console.log(...da)
 
   //authors
   const [searchAuthor, setSearchAuthor] = useState("")
@@ -49,15 +51,16 @@ const Home = () => {
       alert("minimum 3 znaki")
     } else { return setSearching(prevState => prevState + 1) }
   }
-
-  useEffect(async () => {
-    const response = await fetch(url.http + url.part2)
-    const data = await response.json()
-    const filTitle = await data.map(b => b.title).filter((item, index, arr) => arr.indexOf(item) == index)
-      .sort((a, b) => a.replace(/[([\n,„« ]/, "").localeCompare(b.replace(/[/[([\n,„« ]/, "")));
-    setTitle(filTitle); setBooksNumber(data.length)
-    const filAuthors = await data.map(b => b.author).filter((item, index, arr) => arr.indexOf(item) == index).sort();
-    setAuthor(filAuthors)
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(url.http + url.part2)
+      const data = await response.json()
+      const filTitle = await data.map(b => b.title).filter((item, index, arr) => arr.indexOf(item) == index)
+        .sort((a, b) => a.replace(/[([\n,„« ]/, "").localeCompare(b.replace(/[/[([\n,„« ]/, "")));
+      setTitle(filTitle); setBooksNumber(data.length)
+      const filAuthors = await data.map(b => b.author).filter((item, index, arr) => arr.indexOf(item) == index).sort();
+      setAuthor(filAuthors)
+    }; fetchData()
   }, [])
   //fetch specific books
   const booksByPage = `?_page=${counter}`

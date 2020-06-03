@@ -68,7 +68,7 @@ const Login = ({ url, optionsToLogReg }) => {
                 <input type="submit" value="Wyslij" />
                 <Link to="/">wróć do strony głównej</Link>
             </form>
-            <h1>Twoja poczta{loggedUser.email}</h1>
+            <h1>Twoja poczta: {loggedUser.email}</h1>
         </div>
     )
 }
