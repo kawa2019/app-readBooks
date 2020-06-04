@@ -13,7 +13,6 @@ import {
 } from 'react-router-dom';
 
 const Home = () => {
-
   const [name, setName] = useState('');
   const [books, setBooks] = useState([]);
   const [booksNumber, setBooksNumber] = useState(0)
@@ -22,34 +21,21 @@ const Home = () => {
   const [author, setAuthor] = useState([]);
   const [counter, setCounter] = useState(1);
   const [title, setTitle] = useState([]);
-  const [numberForm, setNumberForm] = useState("http://localhost:3000/?#/");
   const [helper, setHelper] = useState(1);
   const [userReg, setUserReg] = useState({ email: "", password: "" });
 
   //basic url
   const url = { http: "http://localhost:4000/", part2: "books" }
 
-  const da = { kamil1: 1, kamil2: 2 }
-  //console.log(...da)
-
   //authors
   const [searchAuthor, setSearchAuthor] = useState("")
   const [duplicateSearch, setDuplicateSearch] = useState("")
   const [foundBooks, setFoundBooks] = useState([])
-
   //title 
   const [searchTitle, setSearchTitle] = useState("")
-  const [duplicateSearchT, setDuplicateSearchT] = useState("")
   const [foundTitles, setFoundTitle] = useState([])
 
-  const startToSearch = () => {
-    if (name.length < 3) {
-      setSearching1(prevState => prevState + 1);
-      setCounter(1);
-      setHelper(1);
-      alert("minimum 3 znaki")
-    } else { return setSearching(prevState => prevState + 1) }
-  }
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(url.http + url.part2)
@@ -94,42 +80,28 @@ const Home = () => {
     })
   };
 
-  //forms
-  const handleForm = (form) => {
-    if (form === 1) {
-      setName("");
-      setSearching1(prevState => prevState + 1);
-      setCounter(1);
-      setHelper(1);
-
-    }
-    setNumberForm(form);
-  }
-
-  const beginToSearchT = () => {
-    if (searchTitle.length >= 3) {
-      let foundTitle = title.filter(x => {
-        if (searchTitle.length >= 3)
-          return x.toLowerCase().includes(searchTitle.toLocaleLowerCase())
-      });
-      setFoundTitle(foundTitle)
-      setDuplicateSearchT(searchTitle)
+  const startToSearch = (wtSearch,array_to_filter, set_wt_found) => {
+    if (wtSearch === Object.keys(name)[0]) {
+      if (name.length >= 3) {
+        setSearching(prevState => prevState + 1)
+      } else {
+        setSearching1(prevState => prevState + 1);
+        setCounter(1);
+        setHelper(1);
+        alert("minimum 3 znaki")
+      }
     } else {
-      alert("minimum 3 znaki");
-      setDuplicateSearchT("")
-    }
-  }
-  const beginToSearch = () => {
-    if (searchAuthor.length >= 3) {
-      let foundBook = author.filter(x => {
-        if (searchAuthor.length >= 3)
-          return (x.toLowerCase().includes(searchAuthor.toLocaleLowerCase()))
-      });
-      setFoundBooks(foundBook)
-      setDuplicateSearch(searchAuthor)
-    } else {
-      alert("minimum 3 znaki");
-      setDuplicateSearch("")
+      if (wtSearch.length >= 3) {
+        let foundTitlesAuthors = array_to_filter.filter(x => {
+          if (wtSearch.length >= 3)
+            return x.toLowerCase().includes(wtSearch.toLocaleLowerCase())
+        });
+        set_wt_found(foundTitlesAuthors)
+        setDuplicateSearch(wtSearch)
+      } else {
+        alert("minimum 3 znaki");
+        setDuplicateSearch("")
+      }
     }
   }
 
@@ -137,7 +109,6 @@ const Home = () => {
     window.location.href = "http://localhost:3000/?#/"
     setName(author1);
     setSearching(prevState => prevState + 1);
-    setNumberForm(1);
   };
 
   const allAlphaSeriesTitle = [["A", "B", "C", "D", "D", "E", "F", "G", "H", "I", "J"],
@@ -147,7 +118,7 @@ const Home = () => {
 
   return (
     <HashRouter>
-      <Nav handleForm={handleForm} helper={helper} setHelper={setHelper} />
+      <Nav helper={helper} setHelper={setHelper} setDuplicateSearch={setDuplicateSearch} />
       <Switch>
         <Route exact path="/" >
           <Search setNameSearch={setName} name_search={name} startToSearch={startToSearch}
@@ -163,18 +134,20 @@ const Home = () => {
           <Login url={url} optionsToLogReg={optionsToLogReg} />
         </Route>
         <Route path="/search/authors">
-          <Search startToSearch={beginToSearch} name_search={searchAuthor}
-            setNameSearch={setSearchAuthor} placeholderSearch="podaj autora..." />
-          <Alpha_listing allAlphaSeries={allAlphaSeriesAuthor}/>
+          <Search startToSearch={startToSearch} name_search={searchAuthor}
+            setNameSearch={setSearchAuthor} placeholderSearch="podaj autora..."
+            array_to_filter={author} set_wt_found={setFoundBooks} />
+          <Alpha_listing allAlphaSeries={allAlphaSeriesAuthor} />
           <AuthorsTitles authorsTitlesFind={authorsTitlesFind} authorsTitles={author} setAuthorsTitles={setAuthor}
             duplicateSearch={duplicateSearch} foundBooks={foundBooks} allAlphaSeries={allAlphaSeriesAuthor} />
         </Route>
         <Route path="/search/title">
-          <Search startToSearch={beginToSearchT} name_search={searchTitle} setNameSearch={setSearchTitle}
-            placeholderSearch="podaj tytuł..." />
-          <Alpha_listing allAlphaSeries={allAlphaSeriesTitle}/>
+          <Search startToSearch={startToSearch} name_search={searchTitle} setNameSearch={setSearchTitle}
+            placeholderSearch="podaj tytuł..."
+            array_to_filter={title} set_wt_found={setFoundTitle} />
+          <Alpha_listing allAlphaSeries={allAlphaSeriesTitle} />
           <AuthorsTitles authorsTitlesFind={authorsTitlesFind} authorsTitles={title} setAuthorsTitles={setTitle}
-            duplicateSearch={duplicateSearchT} foundBooks={foundTitles} allAlphaSeries={allAlphaSeriesTitle} />
+            duplicateSearch={duplicateSearch} foundBooks={foundTitles} allAlphaSeries={allAlphaSeriesTitle} />
         </Route>
       </Switch>
     </HashRouter>

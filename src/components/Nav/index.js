@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-const Nav = ({ handleForm, helper, setHelper }) => {
+const Nav = ({ helper, setHelper, setDuplicateSearch }) => {
    const backgroundOneMenu = (param) => {
       let style = {}
       if (helper === param) {
@@ -23,11 +23,11 @@ const Nav = ({ handleForm, helper, setHelper }) => {
                </header>
                <nav>
                   <ul>
-                     <li><Link to="/" onClick={() => { setHelper(1); return handleForm(1) }} style={backgroundOneMenu(1)}>Start</Link></li>
-                     <li><Link to="/" onClick={() => { setHelper(2); return handleForm(1) }} style={backgroundOneMenu(2)} >Gatunek</Link></li>
-                     <li><Link to="/" onClick={() => { setHelper(3); return handleForm(1) }} style={backgroundOneMenu(3)}>Rodzaj</Link></li>
-                     <li><Link to="/search/title" onClick={() => { setHelper(4); return handleForm(2) }} style={backgroundOneMenu(4)}>Tytuł</Link></li>
-                     <li><Link to="/search/authors" onClick={() => { setHelper(5); return handleForm(3) }} style={backgroundOneMenu(5)}>Autorzy</Link></li>
+                     <li><Link to="/" onClick={() => setHelper(1)} style={backgroundOneMenu(1)}>Start</Link></li>
+                     <li><Link to="/" onClick={() => setHelper(2)} style={backgroundOneMenu(2)} >Gatunek</Link></li>
+                     <li><Link to="/" onClick={() => setHelper(3)} style={backgroundOneMenu(3)}>Rodzaj</Link></li>
+                     <li><Link to="/search/title" onClick={() => { setHelper(4); setDuplicateSearch("") }} style={backgroundOneMenu(4)}>Tytuł</Link></li>
+                     <li><Link to="/search/authors" onClick={() => { setHelper(5); setDuplicateSearch("") }} style={backgroundOneMenu(5)}>Autorzy</Link></li>
                   </ul>
                </nav>
             </div>
