@@ -80,9 +80,9 @@ const Home = () => {
     })
   };
 
-  const startToSearch = (wtSearch,array_to_filter, set_wt_found) => {
-    if (wtSearch === Object.keys(name)[0]) {
-      if (name.length >= 3) {
+  const startToSearch = (wtSearch, array_to_filter, set_wt_found,propsForMain) => {
+    if (propsForMain) {
+      if (wtSearch.length >= 3) {
         setSearching(prevState => prevState + 1)
       } else {
         setSearching1(prevState => prevState + 1);
@@ -122,7 +122,7 @@ const Home = () => {
       <Switch>
         <Route exact path="/" >
           <Search setNameSearch={setName} name_search={name} startToSearch={startToSearch}
-            placeholderSearch="wpisz tytuł,autora,tytuł,rodzaj,gatunek" />
+            placeholderSearch="wpisz tytuł,autora,tytuł,rodzaj,gatunek" propsForMain={true} />
           <All setCounter={setCounter} books={books} booksNumber={booksNumber}
             counter={counter} />
         </Route>
