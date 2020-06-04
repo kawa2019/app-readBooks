@@ -165,14 +165,14 @@ const Home = () => {
         <Route path="/search/authors">
           <Search startToSearch={beginToSearch} name_search={searchAuthor}
             setNameSearch={setSearchAuthor} placeholderSearch="podaj autora..." />
-          <Alpha_listing />
+          <Alpha_listing allAlphaSeries={allAlphaSeriesAuthor}/>
           <AuthorsTitles authorsTitlesFind={authorsTitlesFind} authorsTitles={author} setAuthorsTitles={setAuthor}
             duplicateSearch={duplicateSearch} foundBooks={foundBooks} allAlphaSeries={allAlphaSeriesAuthor} />
         </Route>
         <Route path="/search/title">
           <Search startToSearch={beginToSearchT} name_search={searchTitle} setNameSearch={setSearchTitle}
             placeholderSearch="podaj tytuł..." />
-          <Alpha_listing />
+          <Alpha_listing allAlphaSeries={allAlphaSeriesTitle}/>
           <AuthorsTitles authorsTitlesFind={authorsTitlesFind} authorsTitles={title} setAuthorsTitles={setTitle}
             duplicateSearch={duplicateSearchT} foundBooks={foundTitles} allAlphaSeries={allAlphaSeriesTitle} />
         </Route>
