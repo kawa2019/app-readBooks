@@ -140,8 +140,8 @@ const Home = () => {
     setNumberForm(1);
   };
 
-  const allAlphaSeriesTitle = [["A", "B", "C", "D", "D", "E", "F", "G", "H", "I","J"],
-  ["K","L", "M", "N","O","P"], ["R", "S", "T","U", "V", "W", "Z"]];
+  const allAlphaSeriesTitle = [["A", "B", "C", "D", "D", "E", "F", "G", "H", "I", "J"],
+  ["K", "L", "M", "N", "O", "P"], ["R", "S", "T", "U", "V", "W", "Z"]];
   const allAlphaSeriesAuthor = [["A", "B", "C", "D", "D", "E", "F", "G"],
   ["H", "I", "J", "K", "L", "M"], ["N", "O", "P", "R", "S", "T", "V", "W", "Z"]]
 
@@ -150,9 +150,8 @@ const Home = () => {
       <Nav handleForm={handleForm} helper={helper} setHelper={setHelper} />
       <Switch>
         <Route exact path="/" >
-          <Search setName={setName} name={name} startToSearch={startToSearch} numberForm={numberForm}
-            beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
-            searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
+          <Search setNameSearch={setName} name_search={name} startToSearch={startToSearch}
+            placeholderSearch="wpisz tytuł,autora,tytuł,rodzaj,gatunek" />
           <All setCounter={setCounter} books={books} booksNumber={booksNumber}
             counter={counter} />
         </Route>
@@ -164,17 +163,15 @@ const Home = () => {
           <Login url={url} optionsToLogReg={optionsToLogReg} />
         </Route>
         <Route path="/search/authors">
-          <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
-            beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
-            searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
+          <Search startToSearch={beginToSearch} name_search={searchAuthor}
+            setNameSearch={setSearchAuthor} placeholderSearch="podaj autora..." />
           <Alpha_listing />
           <AuthorsTitles authorsTitlesFind={authorsTitlesFind} authorsTitles={author} setAuthorsTitles={setAuthor}
-            duplicateSearch={duplicateSearch} foundBooks={foundBooks} allAlphaSeries={allAlphaSeriesAuthor}/>
+            duplicateSearch={duplicateSearch} foundBooks={foundBooks} allAlphaSeries={allAlphaSeriesAuthor} />
         </Route>
         <Route path="/search/title">
-          <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
-            beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
-            searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
+          <Search startToSearch={beginToSearchT} name_search={searchTitle} setNameSearch={setSearchTitle}
+            placeholderSearch="podaj tytuł..." />
           <Alpha_listing />
           <AuthorsTitles authorsTitlesFind={authorsTitlesFind} authorsTitles={title} setAuthorsTitles={setTitle}
             duplicateSearch={duplicateSearchT} foundBooks={foundTitles} allAlphaSeries={allAlphaSeriesTitle} />

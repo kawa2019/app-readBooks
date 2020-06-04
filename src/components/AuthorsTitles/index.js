@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const AuthorsTitles = ({ authorsTitles, authorsTitlesFind, duplicateSearch, foundBooks,allAlphaSeries }) => {
   const handleAuthorRender = (series) => {
     const array_authorsTitles_by_alpha = alpha => authorsTitles.filter(b => b.toUpperCase().replace("(", "")[0] === alpha);
