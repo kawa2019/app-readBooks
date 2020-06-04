@@ -4,8 +4,7 @@ import All from "../../components/All-books/index";
 import Register from "../../components/Register/index";
 import Login from "../../components/Login/index";
 import Nav from '../../components/Nav/index';
-import Authors from "../../components/Authors/index";
-import Title from "../../components/Title/index";
+import AuthorsTitles from "../../components/AuthorsTitles/index";
 import Alpha_listing from '../../components/Alpha_listing/index'
 import {
   HashRouter,
@@ -30,8 +29,8 @@ const Home = () => {
   //basic url
   const url = { http: "http://localhost:4000/", part2: "books" }
 
-const da ={kamil1:1,kamil2:2}
-//console.log(...da)
+  const da = { kamil1: 1, kamil2: 2 }
+  //console.log(...da)
 
   //authors
   const [searchAuthor, setSearchAuthor] = useState("")
@@ -134,12 +133,18 @@ const da ={kamil1:1,kamil2:2}
     }
   }
 
-  const authorFind = (author1) => {
+  const authorsTitlesFind = (author1) => {
     window.location.href = "http://localhost:3000/?#/"
     setName(author1);
     setSearching(prevState => prevState + 1);
     setNumberForm(1);
   };
+
+  const allAlphaSeriesTitle = [["A", "B", "C", "D", "D", "E", "F", "G", "H", "I","J"],
+  ["K","L", "M", "N","O","P"], ["R", "S", "T","U", "V", "W", "Z"]];
+  const allAlphaSeriesAuthor = [["A", "B", "C", "D", "D", "E", "F", "G"],
+  ["H", "I", "J", "K", "L", "M"], ["N", "O", "P", "R", "S", "T", "V", "W", "Z"]]
+
   return (
     <HashRouter>
       <Nav handleForm={handleForm} helper={helper} setHelper={setHelper} />
@@ -162,16 +167,17 @@ const da ={kamil1:1,kamil2:2}
           <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
             beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
             searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
-          <Authors authorFind={authorFind} author={author} setAuthor={setAuthor}
-            duplicateSearch={duplicateSearch} foundBooks={foundBooks} />
+          <Alpha_listing />
+          <AuthorsTitles authorsTitlesFind={authorsTitlesFind} authorsTitles={author} setAuthorsTitles={setAuthor}
+            duplicateSearch={duplicateSearch} foundBooks={foundBooks} allAlphaSeries={allAlphaSeriesAuthor}/>
         </Route>
         <Route path="/search/title">
           <Search setter={setName} value={name} startToSearch={startToSearch} numberForm={numberForm}
             beginToSearch={beginToSearch} beginToSearchT={beginToSearchT} searchAuthor={searchAuthor}
             searchTitle={searchTitle} setSearchAuthor={setSearchAuthor} setSearchTitle={setSearchTitle} />
           <Alpha_listing />
-          <Title authorFind={authorFind} title={title} setTitle={setTitle} foundTitles={foundTitles}
-            duplicateSearchT={duplicateSearchT} />
+          <AuthorsTitles authorsTitlesFind={authorsTitlesFind} authorsTitles={title} setAuthorsTitles={setTitle}
+            duplicateSearch={duplicateSearchT} foundBooks={foundTitles} allAlphaSeries={allAlphaSeriesTitle} />
         </Route>
       </Switch>
     </HashRouter>

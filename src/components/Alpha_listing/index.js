@@ -28,7 +28,7 @@ export default function Alpha_listing() {
                 <li><ScrollLink to="U" smooth={true} duration={1200}>U</ScrollLink></li>
                 <li><ScrollLink to="V" smooth={true} duration={1200}>V</ScrollLink></li>
                 <li><ScrollLink to="W" smooth={true} duration={1200}>W</ScrollLink></li>
-                <li><ScrollLink to="Inne" smooth={true} duration={1200}>Inne</ScrollLink></li>
+                <li><ScrollLink to="Z" smooth={true} duration={1200}>Inne</ScrollLink></li>
             </ul>
         </div>
     )
