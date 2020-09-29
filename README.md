@@ -1,20 +1,21 @@
 ## Short description
 
-App-readBooks -It is an application used to search for books from the database and read them.You can search by any word relate to book.
+App-readBooks -It is an application used to search for books in outside api. You can search by any word relate to book.
 Website will be evolving into add books to user account and get RWD function with good-looking CSS.<br/>
 My first application use:
 - HTML,CSS,Sass
-- JavaScript,React, React-router/app
+- JavaScript
+- React
+- React-router/app
 - NPM,ES6
-- Fetch,JSON Server.
+- Fetch
 ##
-Main content of my my work is in src directory.There are directories like:<br />
- -scss which contains sass;<br />
- -components with parts of app;<br />
- -newDB with my JSON server;<br />
- -pages/Home where are routes;<br />
- -fonts;<br />
- -image;<br />
+Main content of my my work is in src directory.There are directories like:
+- scss which contains sass
+- components with parts of app
+- pages/Home where are routes
+- fonts
+- image
 
 ##
 
@@ -35,15 +36,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
-
-Go to another terminal and in src/newDB directory you must run JSON Server:
- 
- ### `json-server -p 4000 pobrane.json -m ../../node_modules/json-server-auth`
-
-The page will be contains data from JSON Server
-
-Return to first terminal.
-
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
